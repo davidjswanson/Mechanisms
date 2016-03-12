@@ -6,6 +6,7 @@
 */
 
 #include <iostream>
+#include <Value>
 
 using namespace std;
 
@@ -17,19 +18,20 @@ class Coordinate{
 	public:
 		Coordinate() {x=0, y=0;}							// Default to Zero
 		Coordinate(double inX, double inY) {x=inX, y=inY;}	// Or specify two numbers
-		bool set(char, double);								// Set value for a particular axis
+		Coordinate(Value inX, Value inY) {x=inX, y=inY;}	// Or specify two numbers
+		bool set(char, Value);								// Set value for a particular axis
 		double get(char);									// Get value for a particular axis
 		friend ostream& operator <<(ostream &, const Coordinate&);	//Print the coordinate
 	private:
-		double x;
-		double y;
+		Value x;
+		Value y;
 };
 
 /* Coordinate::set
 *  used for setting an indivicual value for a coordinate axis
 *  returns 0 on success, 1 on failure to set value.
 */
-bool Coordinate::set(char axis, double value){
+bool Coordinate::set(char axis, Value value){
 	switch(axis){
 		case 'x':
 		case 'X':
@@ -49,7 +51,7 @@ bool Coordinate::set(char axis, double value){
 *  used for getting an individual axis value
 */
 
-double Coordinate::get(char axis){
+Value Coordinate::get(char axis){
 	switch(axis){
 		case 'x':
 		case 'X':
