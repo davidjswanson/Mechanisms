@@ -20,7 +20,7 @@ class Coordinate{
                 Coordinate(Value inX, Value inY) {x=inX, y=inY;}				// Or specify two Values
                 Coordinate(double, double, double, double);
 		bool set(char, Value);								// Set value for a particular axis
-		Value get(char);								// Get value for a particular axis
+                double get(char);								// Get value for a particular axis
                 //friend ostream& operator <<(ostream &, const Coordinate&);			//Print the coordinate
 	private:
 		Value x;
@@ -56,15 +56,15 @@ bool Coordinate::set(char axis, Value value){
 *  used for getting an individual axis value
 */
 
-Value Coordinate::get(char axis){
+double Coordinate::get(char axis){
 	switch(axis){
 		case 'x':
 		case 'X':
-			return x;
+                        return x.getCurrentVal();
 		break;
 		case 'y':
 		case 'Y':
-			return y;
+                        return y.getCurrentVal();
 		break;
 		default:
 			return 0;	

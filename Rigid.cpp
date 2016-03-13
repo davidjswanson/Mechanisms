@@ -1,5 +1,5 @@
 
-
+#define RIGID 1
 #include <iostream>
 
 using namespace std;
@@ -8,7 +8,8 @@ using namespace std;
 class Rigid : public Relation {
 	public:
                 Rigid(Value,Point);
-		Value getDistance();		
+                Value getDistance();
+                Point getTarget();
 	private:
 		Value distance;
 };
@@ -16,8 +17,13 @@ class Rigid : public Relation {
 Rigid::Rigid(Value distancein, Point pointin) : Relation(pointin)
 {
 	distance = distancein;
+        typeID=RIGID;
 }
 
 Value Rigid::getDistance(){
 	return distance;
+}
+
+Point Rigid::getTarget(){
+    return target;
 }

@@ -17,7 +17,7 @@ class Value{
 		//Constructors
 		Value();						//New, zeroed value
                 Value(double valin){currentValue = valin;}		//Defined as just a number
-                Value(double minval, double maxval){minValue = minval, maxValue = maxval;}	//Defined by limits
+                Value(double minval, double maxval){minValue = minval, maxValue = maxval, currentValue=0;}	//Defined by limits
                 Value(double currentval, double minval, double maxval){currentValue = currentval,minValue = minval, maxValue = maxval;}	//Defined as current value and limits
                 Value(double, double, double, int);	//Defined as current, range, with level
 
@@ -40,15 +40,16 @@ class Value{
 		bool isMaxOn();
 		double getTolerance();
 		unsigned int getDefLevel();
+                double getCurrentVal();
 		
 		//Overloaded Operators
-                //Value& operator= (Value);								//Define Assignment
-                //bool operator== (const Value);							//Define == comparison operator
-                //bool operator!= (Value& );								//Define != comparison operator
-                //const Value operator *(const Value& otherValue) const;	//Define Multiplication of Values
-                //const Value operator /(const Value& otherValue) const;	//Define Division of Values
-                //const Value operator +(const Value& otherValue) const;	//Define Addisition of Values
-                //const Value operator -(const Value& otherValue) const;	//Define Subtraction of Values
+                Value& operator= (Value);								//Define Assignment
+                bool operator== (const Value);							//Define == comparison operator
+                bool operator!= (Value& );								//Define != comparison operator
+                const Value operator *(const Value& otherValue) const;	//Define Multiplication of Values
+                const Value operator /(const Value& otherValue) const;	//Define Division of Values
+                const Value operator +(const Value& otherValue) const;	//Define Addisition of Values
+                const Value operator -(const Value& otherValue) const;	//Define Subtraction of Values
 		//Can we overload a cast to double operation that returns the current value, so any 
 		//  operation that requires a double can simply use a value and will be given the current value?
 
@@ -61,6 +62,10 @@ class Value{
 		double currentValue;				//Current Value
 		double tolerance;					//Tolerance Level
 };
+
+double Value::getCurrentVal(){
+    return currentValue;
+}
 
 Value::Value(double currentval, double minval, double maxval, int level){
     defLevel = level;
