@@ -7,9 +7,10 @@ using namespace std;
 #include "./Point.cpp"
 
 int main(){
-	Point myPoint;
+        Point myPoint;
 	int input;
-	cout << myPoint.getpt();
+
 	cin >> input;
-	cout << input;
+        cout << input;
+        cin>>input;
 }

@@ -16,10 +16,10 @@ class Value{
 	public:
 		//Constructors
 		Value();						//New, zeroed value
-		Value(double currentValue);		//Defined as just a number
-		Value(double min, double max);	//Defined by limits
-		Value(double current, double min, double max);	//Defined as current value and limits
-		Value(double current, double min, double max, int deflevel);	//Defined as current, range, with level		
+                Value(double valin){currentValue = valin;}		//Defined as just a number
+                Value(double minval, double maxval){minValue = minval, maxValue = maxval;}	//Defined by limits
+                Value(double currentval, double minval, double maxval){currentValue = currentval,minValue = minval, maxValue = maxval;}	//Defined as current value and limits
+                Value(double, double, double, int);	//Defined as current, range, with level
 
 		//Functions that set information
 		bool setMin(double);
@@ -29,9 +29,9 @@ class Value{
 		maxOn();
 		maxOff();
 		setTolerance(double);
-		lock() {defLevel = 0;};									//Lock Value
-		unlock() {defLevel = 1;};								//Unlock Value
-		unlock(unsigned int newLevel) {defLevel = newLevel;}	//Unlock Value to a definition level
+                lock() {defLevel = 0;}									//Lock Value
+                unlock() {defLevel = 1;}								//Unlock Value
+                unlock(unsigned int newLevel) {defLevel = newLevel;}	//Unlock Value to a definition level
 		
 		//Functions that get information
 		double getMin();
@@ -42,13 +42,13 @@ class Value{
 		unsigned int getDefLevel();
 		
 		//Overloaded Operators
-		Value& operator= (Value);								//Define Assignment	
-		bool operator== (const Value);							//Define == comparison operator
-		bool operator!= (Value& );								//Define != comparison operator
-		const Value operator *(const Value& otherValue) const;	//Define Multiplication of Values
-		const Value operator /(const Value& otherValue) const;	//Define Division of Values
-		const Value operator +(const Value& otherValue) const;	//Define Addisition of Values
-		const Value operator -(const Value& otherValue) const;	//Define Subtraction of Values
+                //Value& operator= (Value);								//Define Assignment
+                //bool operator== (const Value);							//Define == comparison operator
+                //bool operator!= (Value& );								//Define != comparison operator
+                //const Value operator *(const Value& otherValue) const;	//Define Multiplication of Values
+                //const Value operator /(const Value& otherValue) const;	//Define Division of Values
+                //const Value operator +(const Value& otherValue) const;	//Define Addisition of Values
+                //const Value operator -(const Value& otherValue) const;	//Define Subtraction of Values
 		//Can we overload a cast to double operation that returns the current value, so any 
 		//  operation that requires a double can simply use a value and will be given the current value?
 
@@ -62,14 +62,11 @@ class Value{
 		double tolerance;					//Tolerance Level
 };
 
-//Initialize new Object to default "zero" state
-Value::Value(){
-	defLevel = 0;
-	minSet = false;
-	minValue = 0;
-	maxSet = false;
-	maxValue = 0;
-	currentValue = 0;
+Value::Value(double currentval, double minval, double maxval, int level){
+    defLevel = level;
+    minValue = minval;
+    maxValue = maxval;
+    currentValue = currentval;
 }
 
 //Initialize new Object to default "zero" state
@@ -83,11 +80,3 @@ Value::Value(){
 }
 
 //Initialize new Object to default "zero" state
-Value::Value(){
-	defLevel = 0;
-	minSet = false;
-	minValue = 0;
-	maxSet = false;
-	maxValue = 0;
-	currentValue = 0;
-}
