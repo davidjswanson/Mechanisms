@@ -6,9 +6,12 @@ class Point;
 class Relation{
 	public:
                 Relation(Point*);
+                int getTypeID();
+                Point* getTarget();
+                virtual Value getDistance() =0;
 	protected:
                 Point* target;
-                Point* getTarget();
+                int typeID;
 };
 
 Relation::Relation(Point* targetPoint){
@@ -17,4 +20,8 @@ Relation::Relation(Point* targetPoint){
 
 Point* Relation::getTarget(){
         return target;
+}
+
+int Relation::getTypeID(){
+    return typeID;
 }
