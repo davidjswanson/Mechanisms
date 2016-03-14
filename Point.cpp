@@ -1,6 +1,7 @@
 #include <string>
 #define RIGID 1
 using namespace std;
+class Point;
 #include <vector>
 #include ".\Value.cpp"
 #include ".\Coordinate.cpp"
