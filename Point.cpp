@@ -50,7 +50,11 @@ void Point::rotate(double angle){
     for (int i=0;i<Relations.size();i++){
         Relation * thisRelation = Relations[i];
         if (thisRelation->getTypeID()==RIGID){
+
                 double previousAngle = atan((thisRelation->getTarget()->get('y')-coord.get('y'))/(thisRelation->getTarget()->get('x')-coord.get('x')));
+                if(thisRelation->getTarget()->get('x')<0)
+                    previousAngle+=M_PI;
+                cout << previousAngle<<endl;
                 double newX = cos(previousAngle+angle)*thisRelation->getDistance();
                 double newY = sin(previousAngle+angle)*thisRelation->getDistance();
                 thisRelation->getTarget()->moveTo(coord.get('x')+newX,coord.get('y')+newY);
