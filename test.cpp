@@ -5,20 +5,25 @@
 using namespace std;
 
 #include "./Point.cpp"
+#include "./Mechanism.cpp"
 
 int main(){
         Point a(0,0);
-        Point b(3,4);
-        Rigid relA(5,&b);
-        Rigid relB(5,&a);
-        a.addRelation(&relA);
-        b.addRelation(&relB);
-        a.rotate(M_PI);
-        cout <<b.get('x');
-        cout << b.get('y');
-	int input;
+        a.setIsGround(true);
+        Point b(-3,-4);
+        Point c(3,4);
+        Rigid relA(5,&b,&a);
+        Rigid relB(10,&c,&a);
+        Mechanism newMechanism("test");
+        newMechanism.addPoint(&a);
+        newMechanism.addPoint(&c);
+        newMechanism.addPoint(&b);
+        newMechanism.addRelation(&relA);
+        newMechanism.addRelation(&relB);
+        //a.rotate(M_PI/2);
+        cout <<newMechanism.getDOF();
 
-	cin >> input;
-        cout << input;
-        cin>>input;
+        int input;
+        cin >>  input;
+        cout<<input;
 }

@@ -7,14 +7,14 @@ using namespace std;
 
 class Rigid : public Relation {
 	public:
-                Rigid(Value,Point*);
-                Point* getTarget();
+                Rigid(Value,Point*,Point*);
+
                 Value getDistance();
 	private:
 		Value distance;
 };
 
-Rigid::Rigid(Value distancein, Point* pointin) : Relation(pointin)
+Rigid::Rigid(Value distancein, Point* firstPoint, Point* secondPoint) : Relation(firstPoint,secondPoint)
 {
 	distance = distancein;
         typeID=RIGID;
@@ -24,6 +24,4 @@ Value Rigid::getDistance(){
 	return distance;
 }
 
-Point* Rigid::getTarget(){
-    return target;
-}
+
